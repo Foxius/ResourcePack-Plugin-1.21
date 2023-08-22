@@ -1,0 +1,77 @@
+# Resource Pack Plugin Configuration
+# Конфигурация плагина Ресурсных Пакетов
+
+# Maximum number of resource packs a sender can create
+# Максимальное количество пакетов ресурсов, которое отправитель может создать
+max-names-per-sender: 10 # Allows creating a maximum of 10 resource packs! Can be changed
+# Позволяет создать максимум 10 пакетов ресурсов! Можно изменить
+
+# GUI Settings
+# Настройки GUI
+gui-settings:
+  gui-title: "&bYour Resource Packs" # Title displayed on the GUI
+  # Заголовок, отображаемый на GUI
+  free-slot-name: "&eNothing here ;)" # Placeholder text for an empty slot
+  # Заглушка для пустого слота
+  pack-description: "&7Description: %description%" # Description of the resource pack
+  # Описание пакета ресурсов
+  pack-url: "&9URL: %url%" # URL of the resource pack
+  # URL пакета ресурсов
+  gui-size: 27 # 27 - 54 # Size of the GUI
+  # Размер GUI
+
+# Message Settings
+# Настройки сообщений
+messages:
+  package-exists: "&3A resource pack with that name already exists." # Message when a resource pack with the same name already exists
+  # Сообщение, когда пакет ресурсов с таким именем уже существует
+  max-packs-reached: "&3You have reached the maximum number of created resource packs." # Message when the maximum number of resource packs is reached
+  # Сообщение, когда достигнуто максимальное количество созданных пакетов ресурсов
+  player-only-command: "&3This command can only be executed by a player." # Message when a non-player tries to use a player-only command
+  # Сообщение, когда непрошенный пользователь пытается использовать команду только для игроков
+  usage: "&3Usage: /rp <help | create | delete | set | list>" # Message about correct command usage
+  # Сообщение о правильном использовании команды
+  invalid-command: "&3Invalid command. Use /rp help to see available commands." # Message when an invalid command is used
+  # Сообщение при использовании недопустимой команды
+  no-permission: "&3You don't have permission to execute this command." # Message when a player doesn't have permission to use a command
+  # Сообщение, когда у игрока нет разрешения на выполнение команды
+  banned-words-message: "&cYour input contains banned words." # Message when input contains banned words
+  # Сообщение, когда ввод содержит запрещенные слова
+  package-created: "&3Resource pack created with name &f%name% &3and URL &f%url% &3and description: &f%description%" # Message when a resource pack is successfully created
+  # Сообщение, когда пакет ресурсов успешно создан
+  package-deleted: "&3Resource pack with name &f%name% &3deleted." # Message when a resource pack is deleted
+  # Сообщение, когда пакет ресурсов удален
+  package-not-found: "&3Resource pack with name &f%name% &3not found." # Message when a specified resource pack is not found
+  # Сообщение, когда указанный пакет ресурсов не найден
+  package-set: "&3Resource pack with name &f%name% &3set." # Message when a resource pack is set for a player
+  # Сообщение, когда установлен пакет ресурсов для игрока
+
+  package-edit: "&aSuccessfully edited resource pack %name%." # Message when a resource pack is successfully edited
+  # Сообщение, когда пакет ресурсов успешно отредактирован
+
+  usage-edit: "&cUsage: /rp edit <Name> <NewDescription> <URL>" # Message about correct usage of the /rp edit command
+  # Сообщение о правильном использовании команды /rp edit
+  usage-delete: "&3Usage: &7/rp delete <Name>" # Message about correct usage of the /rp delete command
+  # Сообщение о правильном использовании команды /rp delete
+  usage-create: "&3Usage: /rp create <Name> <Description> <URL>" # Message about correct usage of the /rp create command
+  # Сообщение о правильном использовании команды /rp create
+  usage-set: "&3Usage: /rp set <Name>" # Message about correct usage of the /rp set command
+  # Сообщение о правильном использовании команды /rp set
+
+# Help Settings
+# Настройки помощи
+help:
+  help-title: "&6===== Resource Pack Plugin Command Help =====" # Title of the help section
+  # Заголовок раздела помощи
+  create-command: "&b/rp create <Name> <Description> <URL> &f- Create a new resource pack. Attach a .zip to the URL for archive download." # Help message for /rp create command
+  # Сообщение о помощи для команды /rp create
+  set-command: "&b/rp set <Name> &f- Set a resource pack. Requires relogging to activate." # Help message for /rp set command
+  # Сообщение о помощи для команды /rp set
+  delete-command: "&b/rp delete <Name> &f- Delete a resource pack from the database." # Help message for /rp delete command
+  # Сообщение о помощи для команды /rp delete
+  list-command: "&b/rp list &f- Display a list of resource packs created by you." # Help message for the /rp list command
+  # Сообщение о помощи для команды /rp list
+  help-command: "&b/rp help &f- Show this list of commands." # Help message for the /rp help command
+  # Сообщение о помощи для команды /rp help
+  help-footer: "==============================================" # Footer of the help section
+  # Подвал раздела помощи

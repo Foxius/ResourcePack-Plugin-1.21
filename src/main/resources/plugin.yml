@@ -1,0 +1,42 @@
+name: ResourcePack-Plugin
+version: '${project.version}'
+main: com.cokefenya.minechill.ResourcePackMain
+api-version: '1.20'
+load: STARTUP
+
+
+commands:
+  rp:
+    description: Основная команда для управления ресурс-паками
+    usage: /rpm command
+    permission: minechill.command.rp
+    children:
+      create:
+        description: Создать новый ресурс-пак
+        permission: minechill.command.rp.create
+      set:
+        description: Установить ресурс-пак
+        permission: minechill.command.rp.set
+      delete:
+        description: Удалить ресурс-пак
+        permission: minechill.command.rp.delete
+      list:
+        description: Показать список ресурс-паков
+        permission: minechill.command.rp.list
+      help:
+        description: Показать справку по командам
+        permission: minechill.command.rp.help
+
+permissions:
+  minechill.command.rp:
+    description: Позволяет использовать /rpm
+  minechill.command.rp.create:
+    description: Позволяет создавать ресурс-паки
+  minechill.command.rp.set:
+    description: Позволяет устанавливать ресурс-паки
+  minechill.command.rp.delete:
+    description: Позволяет удалять ресурс-паки
+  minechill.command.rp.list:
+    description: Позволяет просматривать список ресурс-паков
+  minechill.command.rp.help:
+    description: Позволяет просматривать справку по командам
