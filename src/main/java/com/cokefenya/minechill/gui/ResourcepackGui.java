@@ -3,6 +3,7 @@ package com.cokefenya.minechill.gui;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import com.cokefenya.minechill.data.ResourcepackInfo;
 import com.cokefenya.minechill.data.ResourcepackManager;
@@ -20,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
+@SuppressWarnings("deprecation")
 public class ResourcepackGui implements Listener {
     public ResourcepackManager manager;
     public Plugin plugin;
@@ -35,10 +37,10 @@ public class ResourcepackGui implements Listener {
         this.plugin = plugin;
         this.config = config;
         Bukkit.getPluginManager().registerEvents(this, plugin);
-        this.guiTitle = ChatColor.translateAlternateColorCodes('&', config.getString("gui-settings.gui-title"));
-        this.grayGlassName = ChatColor.translateAlternateColorCodes('&', config.getString("gui-settings.free-slot-name"));
-        this.packDescriptionMessage = ChatColor.translateAlternateColorCodes('&', config.getString("gui-settings.pack-description"));
-        this.packUrlMessage = ChatColor.translateAlternateColorCodes('&', config.getString("gui-settings.pack-url"));
+        this.guiTitle = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("gui-settings.gui-title")));
+        this.grayGlassName = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("gui-settings.free-slot-name")));
+        this.packDescriptionMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("gui-settings.pack-description")));
+        this.packUrlMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("gui-settings.pack-url")));
         this.guiSize = config.getInt("gui-settings.gui-size", 27);
     }
 
@@ -53,8 +55,8 @@ public class ResourcepackGui implements Listener {
 
         slot = 0;
 
-        for(Iterator var7 = this.manager.getPacksBySender(player.getName()).iterator(); var7.hasNext(); ++slot) {
-            ResourcepackInfo.PackInfo packInfo = (ResourcepackInfo.PackInfo)var7.next();
+        for(Iterator<ResourcepackInfo.PackInfo> var7 = this.manager.getPacksBySender(player.getName()).iterator(); var7.hasNext(); ++slot) {
+            ResourcepackInfo.PackInfo packInfo = var7.next();
             if (slot >= gui.getSize()) {
                 break;
             }
@@ -78,7 +80,7 @@ public class ResourcepackGui implements Listener {
         ItemStack book = new ItemStack(Material.BOOK);
         ItemMeta meta = book.getItemMeta();
         meta.setDisplayName(ChatColor.DARK_PURPLE.toString() + name);
-        List<String> lore = new ArrayList();
+        List<String> lore = new ArrayList<>();
         lore.add(this.packDescriptionMessage.replace("%description%", description));
         lore.add(this.packUrlMessage.replace("%url%", this.getFileNameFromUrl(url)));
         meta.setLore(lore);

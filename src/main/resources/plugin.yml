@@ -26,8 +26,17 @@ commands:
       help:
         description: Показать справку по командам
         permission: minechill.command.rp.help
+      clear:
+        description: уберает текстурпак
+        permission: minechill.command.rp.clear
+  rps:
+    description: Install the resource pack from plugin folder to server
+    usage: /<command>
+    permission: minechill.command.rps
 
 permissions:
+  minechill.command.rps:
+    description: установка рп севрера
   minechill.command.rp:
     description: Позволяет использовать /rpm
   minechill.command.rp.create:

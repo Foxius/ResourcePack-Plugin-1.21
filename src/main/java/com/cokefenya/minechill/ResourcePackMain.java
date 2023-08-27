@@ -1,5 +1,6 @@
 package com.cokefenya.minechill;
 
+import com.cokefenya.minechill.command.ResourcePackSetCommand;
 import com.cokefenya.minechill.command.ResourcepackCommand;
 import com.cokefenya.minechill.data.BanWordsManager;
 import com.cokefenya.minechill.data.ResourcepackManager;
@@ -38,10 +39,13 @@ public final class ResourcePackMain extends JavaPlugin implements Listener {
             saveResource("banwords.json", false);
         }
 
+
         this.resourcepackManager = new ResourcepackManager(this.getDataFolder(), this.getConfig());
         this.resourcepackCommand = new ResourcepackCommand(this.resourcepackManager, this, this.getConfig(),banWordsManager);
         this.resourcepackGui = new ResourcepackGui(this.resourcepackManager, this, this.getConfig());
         Objects.requireNonNull(this.getCommand("rp")).setExecutor(this.resourcepackCommand);
+
+
     }
 
     public void printStartupBanner() {

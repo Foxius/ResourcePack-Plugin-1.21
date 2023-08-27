@@ -2,7 +2,6 @@ package com.cokefenya.minechill.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,9 +12,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
+@SuppressWarnings({"CallToPrintStackTrace", "deprecation", "ResultOfMethodCallIgnored"})
 public class ResourcepackManager {
     private final int MAX_NAMES_PER_SENDER;
     public final File dataFolder;
@@ -43,7 +45,7 @@ public class ResourcepackManager {
 
     public void createResourcepackFile(CommandSender sender, String name, String description, String url) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.player-only-command")));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("messages.player-only-command"))));
             return;
         }
 
@@ -51,14 +53,14 @@ public class ResourcepackManager {
         String senderName = player.getName();
         List<ResourcepackInfo.PackInfo> packsBySender = this.getPacksBySender(senderName);
         if (packsBySender.size() >= MAX_NAMES_PER_SENDER) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.max-packs-reached")));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("messages.max-packs-reached"))));
             return;
         }
 
         String lowerCaseName = name.toLowerCase();
         for (ResourcepackInfo.PackInfo existingPack : this.resourcepacks) {
             if (existingPack.getName().equalsIgnoreCase(lowerCaseName)) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.package-exists")));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("messages.package-exists"))));
                 return;
             }
         }
@@ -66,7 +68,7 @@ public class ResourcepackManager {
         String capitalizedDisplayName = capitalizeFirstLetter(name);
         ResourcepackInfo.PackInfo packInfo = new ResourcepackInfo.PackInfo(capitalizedDisplayName, sender.getName(), url, description);
         this.addPackInfo(packInfo);
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.package-created").replace("%name%", capitalizedDisplayName).replace("%url%", url).replace("%description%", description)));}
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("messages.package-created")).replace("%name%", capitalizedDisplayName).replace("%url%", url).replace("%description%", description)));}
 
     public void setResourcepack(Player player, String name) {
         ResourcepackInfo.PackInfo packInfo = getPackInfoByNameIgnoreCase(name);
@@ -126,9 +128,7 @@ public class ResourcepackManager {
                 ResourcepackInfo.PackInfo[] packArray = gson.fromJson(reader, ResourcepackInfo.PackInfo[].class);
                 if (packArray != null) {
                     List<ResourcepackInfo.PackInfo> packList = new ArrayList<>();
-                    for (ResourcepackInfo.PackInfo pack : packArray) {
-                        packList.add(pack);
-                    }
+                    Collections.addAll(packList, packArray);
                     return packList;
                 }
             } catch (IOException e) {
